@@ -2,10 +2,6 @@ package ru.dipech.roadmap.storage;
 
 import ru.dipech.roadmap.model.City;
 
-public interface CityStorage {
-
-    void add(City city);
-
+public interface CityStorage extends Storage<City> {
     City get(String name);
-
 }

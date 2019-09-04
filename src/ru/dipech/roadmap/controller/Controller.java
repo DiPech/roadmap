@@ -6,7 +6,6 @@ import ru.dipech.roadmap.model.Road;
 import java.util.List;
 
 public interface Controller {
-
     void addCity(City city);
 
     void addRoad(Road road);
@@ -16,5 +15,4 @@ public interface Controller {
     City getCityByName(String name);
 
     List<Road> getRoadsByCity(City city);
-
 }

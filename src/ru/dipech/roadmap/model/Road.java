@@ -2,8 +2,7 @@ package ru.dipech.roadmap.model;
 
 import java.util.Objects;
 
-public class Road {
-    private String name;
+public class Road extends AbstractModel {
     private City cityFrom;
     private City cityTo;
 
@@ -14,10 +13,6 @@ public class Road {
         this.name = name;
         this.cityFrom = cityFrom;
         this.cityTo = cityTo;
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override
