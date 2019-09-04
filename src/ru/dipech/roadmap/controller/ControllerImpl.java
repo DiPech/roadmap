@@ -28,27 +28,27 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public void addCity(City city) {
+    public synchronized void addCity(City city) {
         executeOrSout(() -> cityStorage.add(city));
     }
 
     @Override
-    public void addRoad(Road road) {
+    public synchronized void addRoad(Road road) {
         executeOrSout(() -> roadStorage.add(road));
     }
 
     @Override
-    public void removeRoad(Road road) {
+    public synchronized void removeRoad(Road road) {
         executeOrSout(() -> roadStorage.remove(road));
     }
 
     @Override
-    public City getCityByName(String name) {
+    public synchronized City getCityByName(String name) {
         return returnOrSout(() -> cityStorage.get(name));
     }
 
     @Override
-    public List<RoadTo> getRoadsByCity(City city) {
+    public synchronized List<RoadTo> getRoadsByCity(City city) {
         List<Road> roads = cityService.getRoads(city);
         return RoadUtil.toTransferObjects(roads);
     }
