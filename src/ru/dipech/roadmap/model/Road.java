@@ -16,6 +16,10 @@ public class Road {
         this.cityTo = cityTo;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
