@@ -6,6 +6,8 @@ import ru.dipech.roadmap.model.Road;
 import ru.dipech.roadmap.service.CityService;
 import ru.dipech.roadmap.storage.CityStorage;
 import ru.dipech.roadmap.storage.RoadStorage;
+import ru.dipech.roadmap.to.RoadTo;
+import ru.dipech.roadmap.util.RoadUtil;
 
 import java.util.List;
 import java.util.Objects;
@@ -46,8 +48,9 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public List<Road> getRoadsByCity(City city) {
-        return cityService.getRoads(city);
+    public List<RoadTo> getRoadsByCity(City city) {
+        List<Road> roads = cityService.getRoads(city);
+        return RoadUtil.toTransferObjects(roads);
     }
 
     private void executeOrSout(Runnable runnable) {

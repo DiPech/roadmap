@@ -5,6 +5,11 @@ import java.util.Objects;
 public class AbstractModel {
     protected String name;
 
+    public AbstractModel(String name) {
+        Objects.requireNonNull(name, "name must not be null");
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

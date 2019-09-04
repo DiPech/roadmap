@@ -11,8 +11,7 @@ public class Road extends AbstractModel {
     }
 
     public Road(String name, City cityFrom, City cityTo) {
-        Objects.requireNonNull(name, "name must not be null");
-        this.name = name;
+        super(name);
         this.cityFrom = cityFrom;
         this.cityTo = cityTo;
     }

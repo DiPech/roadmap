@@ -3,14 +3,21 @@ package ru.dipech.roadmap.model;
 import java.util.Objects;
 
 public class City extends AbstractModel {
-    private float x;
-    private float y;
+    private double x;
+    private double y;
 
-    public City(String name, float x, float y) {
-        Objects.requireNonNull(name, "name must not be null");
-        this.name = name;
+    public City(String name, double x, double y) {
+        super(name);
         this.x = x;
         this.y = y;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
     }
 
     @Override
@@ -19,8 +26,8 @@ public class City extends AbstractModel {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         City city = (City) o;
-        return Float.compare(city.x, x) == 0 &&
-                Float.compare(city.y, y) == 0;
+        return Double.compare(city.x, x) == 0 &&
+                Double.compare(city.y, y) == 0;
     }
 
     @Override

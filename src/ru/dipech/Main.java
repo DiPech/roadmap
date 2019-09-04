@@ -10,6 +10,7 @@ import ru.dipech.roadmap.storage.CityStorage;
 import ru.dipech.roadmap.storage.CityStorageImpl;
 import ru.dipech.roadmap.storage.RoadStorage;
 import ru.dipech.roadmap.storage.RoadStorageImpl;
+import ru.dipech.roadmap.to.RoadTo;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class Main {
             Road road;
             switch (params[0]) {
                 case "addcity":
-                    city = new City(params[1], Float.parseFloat(params[2]), Float.parseFloat(params[3]));
+                    city = new City(params[1], Double.parseDouble(params[2]), Double.parseDouble(params[3]));
                     controller.addCity(city);
                     break;
                 case "addroad":
@@ -61,7 +62,7 @@ public class Main {
                 case "getroads":
                     city = controller.getCityByName(params[1]);
                     if (city != null) {
-                        List<Road> roads = controller.getRoadsByCity(city);
+                        List<RoadTo> roads = controller.getRoadsByCity(city);
                         if (roads != null) {
                             System.out.println(roads);
                         }
