@@ -4,6 +4,8 @@ import ru.dipech.roadmap.controller.Controller;
 import ru.dipech.roadmap.controller.ControllerImpl;
 import ru.dipech.roadmap.model.City;
 import ru.dipech.roadmap.model.Road;
+import ru.dipech.roadmap.service.CityService;
+import ru.dipech.roadmap.service.CityServiceImpl;
 import ru.dipech.roadmap.storage.CityStorage;
 import ru.dipech.roadmap.storage.CityStorageImpl;
 import ru.dipech.roadmap.storage.RoadStorage;
@@ -19,7 +21,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         RoadStorage roadStorage = new RoadStorageImpl();
         CityStorage cityStorage = new CityStorageImpl();
-        Controller controller = new ControllerImpl(cityStorage, roadStorage);
+        CityService cityService = new CityServiceImpl(roadStorage);
+        Controller controller = new ControllerImpl(cityStorage, roadStorage, cityService);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
             System.out.print("Введите команду [ " +

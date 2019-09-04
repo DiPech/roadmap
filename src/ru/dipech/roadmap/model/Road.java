@@ -17,6 +17,14 @@ public class Road extends AbstractModel {
         this.cityTo = cityTo;
     }
 
+    public City getCityFrom() {
+        return cityFrom;
+    }
+
+    public City getCityTo() {
+        return cityTo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

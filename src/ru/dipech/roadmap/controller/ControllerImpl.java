@@ -3,6 +3,7 @@ package ru.dipech.roadmap.controller;
 import ru.dipech.roadmap.exception.StorageException;
 import ru.dipech.roadmap.model.City;
 import ru.dipech.roadmap.model.Road;
+import ru.dipech.roadmap.service.CityService;
 import ru.dipech.roadmap.storage.CityStorage;
 import ru.dipech.roadmap.storage.RoadStorage;
 
@@ -13,12 +14,15 @@ import java.util.function.Supplier;
 public class ControllerImpl implements Controller {
     private CityStorage cityStorage;
     private RoadStorage roadStorage;
+    private CityService cityService;
 
-    public ControllerImpl(CityStorage cityStorage, RoadStorage roadStorage) {
+    public ControllerImpl(CityStorage cityStorage, RoadStorage roadStorage, CityService cityService) {
         Objects.requireNonNull(cityStorage, "cityStorage must not be null");
         Objects.requireNonNull(cityStorage, "roadStorage must not be null");
+        Objects.requireNonNull(cityService, "roadStorage must not be null");
         this.cityStorage = cityStorage;
         this.roadStorage = roadStorage;
+        this.cityService = cityService;
     }
 
     @Override
@@ -43,7 +47,7 @@ public class ControllerImpl implements Controller {
 
     @Override
     public List<Road> getRoadsByCity(City city) {
-        return null;
+        return cityService.getRoads(city);
     }
 
     private void executeOrSout(Runnable runnable) {
