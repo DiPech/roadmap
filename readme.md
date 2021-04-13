@@ -1,46 +1,42 @@
-Тестовый проект RoadMap
-====================================================================================
+# RoadMap Test Project (2019)
 
-Постановка задачи
-------------------------------------------------------------------------------------
+## What I was asked to implement
 
-Дано множество городов и дорог, соединяющих эти города. Каждая дорога соединяет два города.
-Спроектировать и реализовать сервис RoadMap, удовлетворяющий следующим требованиям.
-
-- Город:
-  - Уникальное имя.
-  - Координаты (x, y).
-- Дорога:
-  - Уникальное имя.
-  - Длина.
+You have cities and roads which connect the cities. Design and implement the RoadMap service:
+- City:
+  - Unique name.
+  - Coords (x, y).
+- Road:
+  - Connects two cities.
+  - Unique name.
+  - Length.
 - API:
-  - Добавление нового города.
-  - Добавление новой дороги.
-  - Удаление дороги.
-  - Получение города по имени.
-  - Получение списка дорог по имени города.
-- Основные технические требования:
-  - Организовать хранение в памяти.
-  - Данные сервиса всегда должны находиться в консистентном состоянии.
-  - Нельзя использовать сторонние библиотеки (только JRE).
-  - Имплементация сервиса должна быть потокобезопасной (данное требование является дополнительным. Реализуйте его 
-  только в том случае, если у вас осталось время, и вы уверены в бизнес-логике своего решения).
+  - Add a city.
+  - Add a road.
+  - Delete a road.
+  - Get a city by a name.
+  - Get roads list by a name of a city.
+- Requirements:
+  - InMemory storage.
+  - Data consistency.
+  - External libs are prohibited.
+  - Thread-safe implementation (additionally).
 
-Пояснения по реализации
-------------------------------------------------------------------------------------
+## Implementation explanations
 
-- Разбил предметную область на модели, разделил приложение на слои (`controller`, `service`, `model`, `storage`).
-- Сделал обработку исключений выводом в консоль.
-- Расчет расстояния и вывод дорог города сделал в `RoadTo`, т.к. та было проще и быстрее всего сделать.
-- Выбрал один из самых простых способов синхронизации – навесил на все чувствительные и публичные методы контроллера.
-  Это сработает, т.к. у нас есть только одна точка внешнего взаимодействия с системой – контроллер.
+- I split the app logic into layers (`controller`, `service`, `model`, `storage`).
+- I handled exceptions by outputting text in the console.
+- To prevent data inconsistency I didn't store roads' lengths but calculated it automatically in `RoadTo`.
+- I used `synchronized` inside the controller because it was the simplest way to do it fast 
+(but not so optimal of course)
+- Please keep in mind that it took less than 2h to implement it.
+- I can do it much better for now, but I don't want to waste time on it.
 
-Возможные улучшения реализации
-------------------------------------------------------------------------------------
+## Possible further improvements
 
-- Улучшить сообщения в исключениях (сейчас они более общие, вида "object not found"). Как минимум можно 
-  конкретизировать. А можно сделать конкретные исключения, напр.: `ObjectNotFoundStorageException`.
-- Реализовать тесты слоёв приложения (можно самое простое, без JUnit, т.к. см. требования).
-- Можно объединить методы `executeOrSout` и `returnOrSout`, чтобы не дублировать обработку исключений.
-- Улучшить вывод результатов операций в консоль (сейчас в `toString` стандартный вывод полей объекта).
-- Можно улучшить синхронизацию, т.к. она на данный момент не оптимальна.
+- Add some tests, even without any external libs.
+- Use better synchronization tools from `java.util.concurrent`.
+- Improve exceptions and exceptions handling.
+- Use Stream API to make the code more pretty.
+- Combine `executeOrSout` and `returnOrSout`, don't duplicate the code.
+- Refactor the whole code, I don't write things that way anymore.
